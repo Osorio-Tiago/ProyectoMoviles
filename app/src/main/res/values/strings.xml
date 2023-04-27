@@ -37,6 +37,24 @@
     <string name="estadoCivil">Estado civil</string>
     <string name="direccion">Dirección</string>
     <string name="action_form_CrearCliente">Agregar cliente</string>
+    <string name="action_form_AgregandoCliente">Agregando nuevo cliente</string>
+
+
+
+
+    <!-- Pantalla principal cliente-->
+
+    <string name="verPrestamos">Ver mis préstamos</string>
+    <string name="gestionarAhorros">Gestionar mis ahorros</string>
+    <string name="calcularCuota">Calcular cuota</string>
+    <string name="informacionPersonal">Información Personal</string>
+
+    <!-- Ver informacion cliente-->
+
+    <string name="action_actualizarCliente">Actualizar la información</string>
+
+
+    <string name="tittle_informacionPersonal">Información del cliente</string>
 
 
 </resources>

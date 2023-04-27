@@ -2,6 +2,7 @@ package com.asodesunidos.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,9 +64,15 @@ public class Login extends SuperActivity {
                         showToast("Error encontrando el usuario en la tabla users");
                         return;
                     }
-                    showToast("Login correcto usuario");
+                    int userId = customer.getUid();
+                    showToast("Inicio de sesión exitoso");
+                    Intent i = new Intent(this, CustomerPrincipalActivity.class);
+                    i.putExtra("idCustomer", userId);
+                    i.putExtra("customerName", customer.getName());
+                    startActivity(i);
+                }else{
+                    changeView(AdminActivity.class);
                 }
-                changeView(AdminActivity.class);
             }
         };
     }

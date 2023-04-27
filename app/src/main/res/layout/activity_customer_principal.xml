@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AdminActivity">
+    tools:context=".activity.CustomerPrincipalActivity">
+
 
     <TextView
         android:id="@+id/welcomeCustomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
-        android:text="@string/admin"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,28 +31,38 @@
         tools:ignore="TextSizeCheck">
 
         <Button
-            android:id="@+id/addCustomerBtn"
+            android:id="@+id/viewLoans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/action_CrearCliente" />
+            android:text="@string/verPrestamos" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/manageSavings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/AsignarPrestamo" />
+            android:text="@string/gestionarAhorros" />
+
+        <Button
+            android:id="@+id/calc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calcularCuota" />
+
+        <Button
+            android:id="@+id/personalInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/informacionPersonal" />
 
         <Button
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="logout"
             android:text="@string/action_logout" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="54dp" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

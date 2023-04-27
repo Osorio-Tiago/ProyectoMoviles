@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CustomerActivity">
+    tools:context=".activity.CustomerInformationActivity">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:layout_height="62dp"
             android:background="#015C56"
             android:clickable="false"
-            android:text="@string/action_form_AgregandoCliente"
+            android:text="@string/tittle_informacionPersonal"
             android:textAlignment="viewStart"
             android:textColor="#F1C9A0"
             android:textSize="24sp" />
@@ -89,16 +91,18 @@
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/buttonAddCustomer"
+            android:id="@+id/buttonUpdateCustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#015C56"
             android:backgroundTint="#015C56"
             android:backgroundTintMode="add"
             android:onClick="createCustomer"
-            android:text="@string/action_form_CrearCliente"
+            android:text="@string/action_actualizarCliente"
             app:iconTint="#D6CFCF" />
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
