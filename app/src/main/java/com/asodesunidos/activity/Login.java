@@ -11,7 +11,8 @@ import androidx.room.Room;
 
 import com.asodesunidos.R;
 import com.asodesunidos.config.DatabaseConfig;
-import com.asodesunidos.dao.SavingDAO;
+//import com.asodesunidos.dao.SavingDAO;
+import com.asodesunidos.entity.Customer;
 import com.asodesunidos.entity.User;
 
 public class Login extends SuperActivity {
@@ -57,8 +58,12 @@ public class Login extends SuperActivity {
                     return;
                 }
                 if(!user.isSuperuser()) {
-                    showToast("Aun no esta lista la vista para clientes");
-                    return;
+                    Customer customer = database().getCustomerDAO().findCustomer(user.getUid());
+                    if(customer == null){
+                        showToast("Error encontrando el usuario en la tabla users");
+                        return;
+                    }
+                    showToast("Login correcto usuario");
                 }
                 changeView(AdminActivity.class);
             }

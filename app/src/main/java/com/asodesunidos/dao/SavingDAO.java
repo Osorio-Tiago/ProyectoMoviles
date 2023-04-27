@@ -1,18 +1,22 @@
-package com.asodesunidos.dao;
+/*package com.asodesunidos.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Query;
 import androidx.room.Update;
 
 import com.asodesunidos.entity.Saving;
 
+import java.util.List;
+
 @Dao
-public interface SavingDAO {
+public interface SavingDAO extends CrudDAO<Saving>{
 
-    @Insert
-    public abstract Saving insert(Saving saving);
+    @Query("SELECT * FROM savings")
+    LiveData<List<Saving>> getAllSavings();
 
-    @Update
-    public abstract Saving update(Saving saving);
-
+    @Query("SELECT * FROM savings WHERE id = :savingsId")
+    LiveData<Saving> getSavingsById(int savingsId);
 }
+*/

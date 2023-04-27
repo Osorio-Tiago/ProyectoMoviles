@@ -10,9 +10,8 @@ import androidx.room.Room;
 import com.asodesunidos.config.DatabaseConfig;
 import com.asodesunidos.config.SQLiteHelper;
 import com.asodesunidos.dao.CrudDAO;
-import com.asodesunidos.dao.SavingDAO;
+//import com.asodesunidos.dao.SavingDAO;
 import com.asodesunidos.dao.UserDAO;
-import com.asodesunidos.entity.Saving;
 import com.asodesunidos.entity.User;
 
 public abstract class SuperActivity extends AppCompatActivity {

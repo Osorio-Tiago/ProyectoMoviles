@@ -4,21 +4,41 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.asodesunidos.R;
+import com.asodesunidos.entity.Customer;
+import com.asodesunidos.entity.User;
 
 import java.util.Calendar;
 
 public class CustomerActivity extends SuperActivity {
 
     TextView dateEdt;
+    TextView name;
+    TextView idCard;
+    TextView phone;
+    TextView salary;
+    TextView civilState;
+    TextView addressTxt;
+
+    Button addCustomer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
 
+        name = findViewById(R.id.nameTxt);
+        idCard = findViewById(R.id.idCardTxt);
+        phone = findViewById(R.id.phoneTxt);
+        salary = findViewById(R.id.salaryTxt);
+        civilState = findViewById(R.id.civilStateTxt);
+        addressTxt = findViewById(R.id.addressTxt);
+
+        addCustomer = findViewById(R.id.buttonAddCustomer);
         // on below line we are initializing our variables.
         dateEdt = findViewById(R.id.dateTxt);
 
@@ -63,4 +83,27 @@ public class CustomerActivity extends SuperActivity {
     protected Context context() {
         return CustomerActivity.this;
     }
+
+
+    public void createCustomer(View view){
+
+        long result = createLoginForUser(view);
+        Customer customer = new Customer(Integer.parseInt(String.valueOf(result)), idCard.getText().toString(),
+                name.getText().toString(), Double.parseDouble(salary.getText().toString()), phone.getText().toString(), dateEdt.getText().toString(),
+                civilState.getText().toString(), addressTxt.getText().toString());
+        database().getCustomerDAO().insert(customer);
+
+        showToast("Se agregó el nuevo cliente");
+    }
+
+    private long createLoginForUser(View view){
+        String id = idCard.getText().toString();
+        User user = new User( id, "password", 0);
+        return database().getUserDAO().insert(user);
+    }
 }
+
+
+
+
+
