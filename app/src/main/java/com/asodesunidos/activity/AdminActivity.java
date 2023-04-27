@@ -15,6 +15,8 @@ public class AdminActivity extends SuperActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         init();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class AdminActivity extends SuperActivity {
 
     private void init() {
         findViewById(R.id.addCustomerBtn).setOnClickListener(view -> changeView(CustomerActivity.class));
-        findViewById(R.id.logout).setOnClickListener(view -> changeView(Login.class));
+        findViewById(R.id.logout).setOnClickListener(view -> finish());
     }
 
 

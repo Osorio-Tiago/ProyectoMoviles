@@ -42,7 +42,9 @@
             android:id="@+id/idCardTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="true"
             android:ems="10"
+            android:focusable="false"
             android:hint="@string/cedula"
             android:inputType="numberSigned|number" />
 
@@ -72,7 +74,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/salario"
-            android:inputType="numberDecimal" />
+            android:inputType="numberSigned|number|numberDecimal" />
 
         <EditText
             android:id="@+id/civilStateTxt"
@@ -97,7 +99,7 @@
             android:background="#015C56"
             android:backgroundTint="#015C56"
             android:backgroundTintMode="add"
-            android:onClick="createCustomer"
+            android:onClick="updateCustomer"
             android:text="@string/action_actualizarCliente"
             app:iconTint="#D6CFCF" />
 

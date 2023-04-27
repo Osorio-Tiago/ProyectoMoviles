@@ -69,8 +69,10 @@ public class Login extends SuperActivity {
                     Intent i = new Intent(this, CustomerPrincipalActivity.class);
                     i.putExtra("idCustomer", userId);
                     i.putExtra("customerName", customer.getName());
+                    limpiarCampos();
                     startActivity(i);
                 }else{
+                    limpiarCampos();
                     changeView(AdminActivity.class);
                 }
             }
@@ -93,4 +95,10 @@ public class Login extends SuperActivity {
         }
             return flag;
     }
+
+    private void limpiarCampos(){
+        passwordTxtView.setText("");
+        usernameTxtView.setText("");
+    }
+
 }

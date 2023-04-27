@@ -18,9 +18,11 @@ import java.util.Calendar;
 public class CustomerInformationActivity extends SuperActivity {
 
 
+    int userId;
+
     TextView dateEdt;
     TextView name;
-    TextView idCard;
+    TextView idCard; //No modificar
     TextView phone;
     TextView salary;
     TextView civilState;
@@ -82,13 +84,76 @@ public class CustomerInformationActivity extends SuperActivity {
         });
 
 
+        userId = getIntent().getIntExtra("idCustomer",0);
+        consultarInformacion();
     }
 
 
-    public void consultarInformacion(View view){
+    public void consultarInformacion(){
 
-        Customer customer = database().getCustomerDAO().findCustomer(1);
+        Customer customer = database().getCustomerDAO().findCustomer(userId);
+        if(customer != null) {
+            idCard.setText(customer.getIdentificationCard());
+            name.setText(customer.getName());
+            salary.setText(Double.toString(customer.getSalary()).format("%.0f", customer.getSalary()));
+            phone.setText(customer.getPhoneNumber());
+            dateEdt.setText(customer.getBirthdate());
+            civilState.setText(customer.getCivilStatus());
+            addressTxt.setText(customer.getDirection());
+
+        }
     }
+
+    public void updateCustomer(View view){
+        if(validarCampos()) {
+            Customer cusUpdate = new Customer();
+
+            cusUpdate.setIdentificationCard(idCard.getText().toString());
+            cusUpdate.setName(name.getText().toString());
+            cusUpdate.setSalary(Double.parseDouble(salary.getText().toString()));
+            cusUpdate.setPhoneNumber(phone.getText().toString());
+            cusUpdate.setBirthdate(dateEdt.getText().toString());
+            cusUpdate.setCivilStatus(civilState.getText().toString());
+            cusUpdate.setDirection(addressTxt.getText().toString());
+            cusUpdate.setUid(userId);
+
+            database().getCustomerDAO().update(cusUpdate);
+
+            showToast("Se actualizó la información de manera exitosa");
+            consultarInformacion();
+        }
+    }
+
+    private boolean validarCampos() {
+        boolean flag = true;
+
+        if(name.getText().toString().isEmpty()){
+            flag = false;
+            name.setError("El campo no puede estar vacío");
+        }
+        if(salary.getText().toString().isEmpty()){
+            flag = false;
+            salary.setError("El campo no puede estar vacío");
+        }
+        if( phone.getText().toString().isEmpty()){
+            flag = false;
+            phone.setError("El campo no puede estar vacío");
+        }
+        if( dateEdt.getText().toString().isEmpty()){
+            flag = false;
+            dateEdt.setError("El campo no puede estar vacío");
+        }
+        if( civilState.getText().toString().isEmpty()){
+            flag = false;
+            civilState.setError("El campo no puede estar vacío");
+        }
+        if( addressTxt.getText().toString().isEmpty()){
+            flag = false;
+            addressTxt.setError("El campo no puede estar vacío");
+        }
+        return flag;
+    }
+
 
     @Override
     protected Context context() {
