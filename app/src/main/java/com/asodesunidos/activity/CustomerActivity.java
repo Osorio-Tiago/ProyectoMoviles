@@ -13,6 +13,8 @@ import com.asodesunidos.entity.Customer;
 import com.asodesunidos.entity.User;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class CustomerActivity extends SuperActivity {
 
@@ -75,6 +77,7 @@ public class CustomerActivity extends SuperActivity {
                         year, month, day);
                 // at last we are calling show to
                 // display our date picker dialog.
+                datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());
                 datePickerDialog.show();
             }
         });
@@ -87,13 +90,30 @@ public class CustomerActivity extends SuperActivity {
 
     public void createCustomer(View view){
 
-        long result = createLoginForUser(view);
-        Customer customer = new Customer(Integer.parseInt(String.valueOf(result)), idCard.getText().toString(),
-                name.getText().toString(), Double.parseDouble(salary.getText().toString()), phone.getText().toString(), dateEdt.getText().toString(),
-                civilState.getText().toString(), addressTxt.getText().toString());
-        database().getCustomerDAO().insert(customer);
+        if(searchIdCard()){
+            long result = createLoginForUser(view);
+            Customer customer = new Customer(Integer.parseInt(String.valueOf(result)), idCard.getText().toString(),
+                    name.getText().toString(), Double.parseDouble(salary.getText().toString()), phone.getText().toString(), dateEdt.getText().toString(),
+                    civilState.getText().toString(), addressTxt.getText().toString());
+            database().getCustomerDAO().insert(customer);
 
-        showToast("Se agregó el nuevo cliente");
+            showToast("Se agregó el nuevo cliente");
+        }else{
+            showToast("No se pudo agreagar el nuevo cliente");
+        }
+    }
+
+
+    public boolean searchIdCard(){
+        List<Customer> customers = database().getCustomerDAO().findAll();
+
+        for(int i = 0; i < customers.size(); i++){
+            if(customers.get(i).getIdentificationCard().equals(idCard.getText().toString())){
+                idCard.setError("El número de cédula ya existe.");
+                return false;
+            }
+        }
+        return true;
     }
 
     private long createLoginForUser(View view){

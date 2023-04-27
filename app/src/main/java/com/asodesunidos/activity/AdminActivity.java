@@ -25,7 +25,6 @@ public class AdminActivity extends SuperActivity {
     private void init() {
         findViewById(R.id.addCustomerBtn).setOnClickListener(view -> changeView(CustomerActivity.class));
         findViewById(R.id.logout).setOnClickListener(view -> finish());
+        findViewById(R.id.addLoanClient).setOnClickListener(view -> changeView(AddLoanActivity.class));
     }
-
-
 }

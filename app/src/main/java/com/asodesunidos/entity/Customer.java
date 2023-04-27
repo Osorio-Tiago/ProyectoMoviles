@@ -3,9 +3,10 @@ package com.asodesunidos.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "customers")
+@Entity(tableName = "customers",indices = {@Index(value = {"identificationCard"}, unique = true)})
 public class Customer {
 
     @PrimaryKey

@@ -54,7 +54,6 @@ public class CustomerPrincipalActivity extends SuperActivity {
         finish();
     }
     @Override
-    protected Context context() {
-        return null;
+    protected Context context() { return this;
     }
 }

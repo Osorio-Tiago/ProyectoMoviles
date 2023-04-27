@@ -27,11 +27,30 @@
     <string name="AsignarPrestamo">Asignar un préstamo</string>
     <string name="action_CrearCliente">Agregar un nuevo cliente</string>
 
+    <string name="plazoPrestamo">Plazo del préstamo</string>
+    <string name="tipoPrestamo">Tipo del préstamo</string>
+    <string name="montoMensual">Monto mensual</string>
+
+    <string name="tresAnnos">Tres años</string>
+    <string name="cincoAnnos">5 años</string>
+    <string name="diezAnnos">10 años</string>
+
+
+    <string name="hipoteca">Hipotecario 7.5%</string>
+    <string name="educacion">Educación 8%</string>
+    <string name="personal">Personal 10%</string>
+    <string name="viajes">Viajes 12%</string>
+
+    <string name="calcular">CALCULAR</string>
+    <string name="agregarPrestamo">AGREGAR PRÉSTAMO</string>
+    <string name="cuota">Cuota</string>
+
+
 
     <!-- Agregar un cliente-->
     <string name="cedula">Número de cédula</string>
     <string name="nombreCliente">Nombre</string>
-    <string name="salario">Salario mensual</string>
+    <string name="salario">Salario mensual </string>
     <string name="telefono">Número de teléfono</string>
     <string name="fechaNacimiento">Fecha de nacimiento</string>
     <string name="estadoCivil">Estado civil</string>
@@ -40,6 +59,12 @@
     <string name="action_form_AgregandoCliente">Agregando nuevo cliente</string>
 
 
+    <!-- Agregar un prestamo a cliente-->
+
+    <string name="action_form_AgregandoPrestamo">Agregando préstamo al cliente</string>
+    <string name="action_form_BuscarCliente">Buscar</string>
+
+    <string name="action_form_SalarioMaximo">Salario máximo</string>
 
 
     <!-- Pantalla principal cliente-->

@@ -2,6 +2,7 @@ package com.asodesunidos.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,11 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asodesunidos.R;
 import com.asodesunidos.entity.Customer;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class CustomerInformationActivity extends SuperActivity {
 
@@ -79,6 +83,7 @@ public class CustomerInformationActivity extends SuperActivity {
                         year, month, day);
                 // at last we are calling show to
                 // display our date picker dialog.
+                datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());
                 datePickerDialog.show();
             }
         });
@@ -89,13 +94,14 @@ public class CustomerInformationActivity extends SuperActivity {
     }
 
 
+    @SuppressLint("DefaultLocale")
     public void consultarInformacion(){
 
         Customer customer = database().getCustomerDAO().findCustomer(userId);
         if(customer != null) {
             idCard.setText(customer.getIdentificationCard());
             name.setText(customer.getName());
-            salary.setText(Double.toString(customer.getSalary()).format("%.0f", customer.getSalary()));
+            salary.setText(String.format("%.0f", customer.getSalary()));
             phone.setText(customer.getPhoneNumber());
             dateEdt.setText(customer.getBirthdate());
             civilState.setText(customer.getCivilStatus());
@@ -154,9 +160,8 @@ public class CustomerInformationActivity extends SuperActivity {
         return flag;
     }
 
-
     @Override
     protected Context context() {
-    return null;
+    return this;
     }
 }

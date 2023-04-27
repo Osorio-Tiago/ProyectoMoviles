@@ -13,7 +13,7 @@ import com.asodesunidos.entity.Loan;
 import com.asodesunidos.entity.User;
 
 
-@Database(entities = {User.class, Customer.class, Loan.class}, version = 3)
+@Database(entities = {User.class, Customer.class, Loan.class}, version = 1)
 public abstract class DatabaseConfig extends RoomDatabase {
 
     public abstract UserDAO getUserDAO();
