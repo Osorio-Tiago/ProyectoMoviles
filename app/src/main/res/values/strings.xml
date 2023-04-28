@@ -46,7 +46,6 @@
     <string name="cuota">Cuota</string>
 
 
-
     <!-- Agregar un cliente-->
     <string name="cedula">Número de cédula</string>
     <string name="nombreCliente">Nombre</string>
@@ -64,7 +63,9 @@
     <string name="action_form_AgregandoPrestamo">Agregando préstamo al cliente</string>
     <string name="action_form_BuscarCliente">Buscar</string>
 
-    <string name="action_form_SalarioMaximo">Salario máximo</string>
+    <string name="action_form_SalarioMaximo">Monto máximo</string>
+
+    <string name="montoDeseado">Monto de préstamo</string>
 
 
     <!-- Pantalla principal cliente-->
@@ -80,6 +81,16 @@
 
 
     <string name="tittle_informacionPersonal">Información del cliente</string>
+
+
+    <!-- Ver informacion cliente Prestamos-->
+
+    <string name="tittle_Prestamos">Mis préstamos</string>
+
+
+    <!-- Calcular Cuota-->
+
+    <string name="tittle_CalcularCuota">Calcular cuota</string>
 
 
 </resources>

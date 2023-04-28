@@ -12,6 +12,12 @@
         android:theme="@style/Theme.AsoDesUnidos"
         tools:targetApi="31">
         <activity
+            android:name=".activity.CustomerCalcCuotaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ViewLoansCustomerActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.AddLoanActivity"
             android:exported="false" />
         <activity

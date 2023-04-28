@@ -40,7 +40,7 @@ public class CustomerPrincipalActivity extends SuperActivity {
 
 
         personalInfo = (Button) findViewById(R.id.personalInformation);
-
+        findViewById(R.id.calc).setOnClickListener(view -> changeView(CustomerCalcCuotaActivity.class));
     }
 
 
@@ -48,6 +48,10 @@ public class CustomerPrincipalActivity extends SuperActivity {
         Intent i = new Intent(this, CustomerInformationActivity.class);
         i.putExtra("idCustomer", userId);
         startActivity(i);
+    }
+
+    public void calcCuotaView(){
+
     }
 
     public void logout(View view){
