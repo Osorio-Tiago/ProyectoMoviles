@@ -56,10 +56,12 @@ public class AddLoanActivity extends SuperActivity {
 
     float porcentaje;
 
+    float cuota;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_loan);
+
 
         tiposPrestamoSpinner = (Spinner) findViewById(R.id.tiposSpinner);
 
@@ -112,8 +114,8 @@ public class AddLoanActivity extends SuperActivity {
             }
         }
     }
-    private double calcSalarioMaximo(double salario){
-        return salario * 0.45;
+    private float calcSalarioMaximo(double salario){
+        return (float) (salario * 0.45);
     }
 
 
@@ -132,21 +134,26 @@ public class AddLoanActivity extends SuperActivity {
             cuotaCalculadaTv.setText(stringdouble);
 
             montoTotal = cuota * numeroCuotas;
+            this.cuota = cuota;
         }
     }
 
 
     public void agregarPrestamoCliente(View view){
 
-
-        Loan loanCust = new Loan();
-        loanCust.setCustomerId(idCliente);
-        loanCust.setLoantype(tiposPrestamoSpinner.getSelectedItem().toString());
-        loanCust.setPeriod(periodo);
-        loanCust.setTotalCredit(montoTotal);
-        loanCust.setPercentage(porcentaje);
-
-        database().getLoanDAO().insert(loanCust);
+        if(validarCalcular()){
+            Loan loanCust = new Loan();
+            loanCust.setCustomerId(idCliente);
+            loanCust.setLoantype(tiposPrestamoSpinner.getSelectedItem().toString());
+            loanCust.setPeriod(periodo);
+            loanCust.setTotalCredit(montoTotal);
+            loanCust.setPercentage(porcentaje);
+            loanCust.setCuota(cuota);
+            database().getLoanDAO().insert(loanCust);
+            showToast("Se agregó el préstamo al cliente");
+        }else{
+            showToast("No se pudo agregar el préstamo");
+        }
     }
 
     private int numeroCuotasCalc(View view){
@@ -200,8 +207,12 @@ public class AddLoanActivity extends SuperActivity {
             montoPrestarTv.setError("El campo no puede estar en blanco.");
             flag = false;
 
-        }else if(Double.parseDouble(montoPrestarTv.getText().toString()) > calcSalarioMaximo(salarioMax)) {
+        }
+        else if( Float.parseFloat(montoPrestarTv.getText().toString()) > salarioMax) {
             montoPrestarTv.setError("El monto solicitado no puede ser mayor al 45% del salario.");
+            flag = false;
+        }else if(Float.parseFloat(montoPrestarTv.getText().toString()) == 0){
+            montoPrestarTv.setError("El monto solicitado no puede ser 0.");
             flag = false;
         }
 

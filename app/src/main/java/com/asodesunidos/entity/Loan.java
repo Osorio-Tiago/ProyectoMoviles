@@ -37,13 +37,17 @@ public class Loan {
     @NonNull
     private float percentage;  //Hipotecario = 7.5% - Educacion = 8% - Personal = 10% - Viajes = 12%
 
-    public Loan(int loanId, @NonNull String loantype, int customerId, float totalCredit, int period, float percentage) {
+    @ColumnInfo (name = "cuota")
+    private float cuota;
+
+    public Loan(int loanId, @NonNull String loantype, int customerId, float totalCredit, int period, float percentage, float cuota) {
         this.loanId = loanId;
         this.loantype = loantype;
         this.customerId = customerId;
         this.totalCredit = totalCredit;
         this.period = period;
         this.percentage = percentage;
+        this.cuota = cuota;
     }
 
     public Loan() {
@@ -97,4 +101,13 @@ public class Loan {
     public void setPercentage(float percentage) {
         this.percentage = percentage;
     }
+
+    public float getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(float cuota) {
+        this.cuota = cuota;
+    }
 }
+

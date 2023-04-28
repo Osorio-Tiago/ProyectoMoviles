@@ -39,6 +39,7 @@ public class CustomerInformationActivity extends SuperActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_information);
 
+
         name = findViewById(R.id.nameTxt);
         idCard = findViewById(R.id.idCardTxt);
         phone = findViewById(R.id.phoneTxt);

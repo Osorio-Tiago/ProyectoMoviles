@@ -81,6 +81,8 @@ public class CustomerActivity extends SuperActivity {
                 datePickerDialog.show();
             }
         });
+
+
     }
     @Override
     protected Context context() {

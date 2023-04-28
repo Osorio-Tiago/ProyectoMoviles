@@ -93,4 +93,13 @@
     <string name="tittle_CalcularCuota">Calcular cuota</string>
 
 
+    <!-- Ver informacion de prestamos-->
+
+    <string name="tittle_tipoPrestamo">Tipo de préstamo</string>
+    <string name="tittle_creditoTotal">Crédito total</string>
+    <string name="tittle_prestamos">Mis préstamos</string>
+    <string name="tittle_Periodo">Periodo</string>
+    <string name="tittle_Cuota">Cuota</string>
+    <string name="tittle_porcentaje">Interés</string>
+    <string name="pagar">Pagar</string>
 </resources>
