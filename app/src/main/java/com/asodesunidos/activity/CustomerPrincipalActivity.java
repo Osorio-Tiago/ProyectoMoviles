@@ -27,7 +27,8 @@ public class CustomerPrincipalActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_principal);
-
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         welcome = (TextView) findViewById(R.id.welcomeCustomer);
 
         userId = getIntent().getIntExtra("idCustomer",0);

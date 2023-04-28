@@ -32,7 +32,8 @@ public class CustomerActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         name = findViewById(R.id.nameTxt);
         idCard = findViewById(R.id.idCardTxt);
         phone = findViewById(R.id.phoneTxt);

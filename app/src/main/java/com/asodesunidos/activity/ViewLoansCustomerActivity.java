@@ -26,7 +26,8 @@ public class ViewLoansCustomerActivity extends SuperActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_loans_customer);
 
-
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         loansList = database().getLoanDAO().findAll();
 
         loansList.get(0);

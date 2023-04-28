@@ -48,7 +48,8 @@ public class CustomerCalcCuotaActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_calc_cuota);
-
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         tiposPrestamoSpinner = (Spinner) findViewById(R.id.tiposSpinnerCuota);
 
