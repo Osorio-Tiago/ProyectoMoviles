@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import com.asodesunidos.R;
 import com.asodesunidos.entity.Customer;
+import com.asodesunidos.entity.Loan;
+
+import java.util.List;
 
 public class CustomerPrincipalActivity extends SuperActivity {
 
@@ -43,7 +46,24 @@ public class CustomerPrincipalActivity extends SuperActivity {
         personalInfo = (Button) findViewById(R.id.personalInformation);
         findViewById(R.id.calc).setOnClickListener(view -> changeView(CustomerCalcCuotaActivity.class));
 
-        findViewById(R.id.viewLoans).setOnClickListener(view -> changeView(ViewLoansCustomerActivity.class));
+        //findViewById(R.id.viewLoans).setOnClickListener(view -> changeView(ViewLoansCustomerActivity.class));
+    }
+
+    public void viewLoansCustomer(View view){
+        List<Loan> loansList;
+
+        loansList = database().getLoanDAO().find(userId);
+
+        if(loansList.size() > 0){
+            Intent i = new Intent(this, ViewLoansCustomerActivity.class);
+            i.putExtra("idCustomer", userId);
+            startActivity(i);
+        }else{
+            showToast("El usuario no posee prestamos disponibles");
+        }
+
+
+
     }
 
 
@@ -51,6 +71,11 @@ public class CustomerPrincipalActivity extends SuperActivity {
         Intent i = new Intent(this, CustomerInformationActivity.class);
         i.putExtra("idCustomer", userId);
         startActivity(i);
+    }
+
+
+    public void loansCustomerView(View view){
+
     }
 
     public void logout(View view){

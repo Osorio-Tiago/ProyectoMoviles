@@ -28,7 +28,10 @@ public class ViewLoansCustomerActivity extends SuperActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-        loansList = database().getLoanDAO().findAll();
+
+        int userId = getIntent().getIntExtra("idCustomer", 0);
+
+        loansList = database().getLoanDAO().find(userId);
 
         loansList.get(0);
 
@@ -36,78 +39,87 @@ public class ViewLoansCustomerActivity extends SuperActivity {
         TableLayout tableLayout = findViewById(R.id.table_layout);
 
         // Iterar a través de la lista de préstamos
-        for (Loan prestamo : loansList) {
-
-            // Crear una nueva fila de tabla
-            TableRow tableRow = new TableRow(this);
-
-            // Crear TextViews para cada atributo del préstamo
-            TextView loanTypeTextView = new TextView(this);
-            loanTypeTextView.setText(prestamo.getLoantype());
-            tableRow.addView(loanTypeTextView);
-            loanTypeTextView.setGravity(Gravity.CENTER);
+        if(loansList.size() != 0) {
 
 
-            TextView totalCreditTextView = new TextView(this);
-            totalCreditTextView.setText(String.valueOf(prestamo.getTotalCredit()));
-            tableRow.addView(totalCreditTextView);
+            for (Loan prestamo : loansList) {
 
-            TextView periodTextView = new TextView(this);
-            periodTextView.setText(String.format("%s años", String.valueOf(prestamo.getPeriod())));
-            tableRow.addView(periodTextView);
+                // Crear una nueva fila de tabla
+                TableRow tableRow = new TableRow(this);
 
-            TextView percentageTextView = new TextView(this);
-            percentageTextView.setText(String.valueOf(prestamo.getPercentage()));
-            tableRow.addView(percentageTextView);
-
-            TextView cuotaTextView = new TextView(this);
-            cuotaTextView.setText(String.valueOf(prestamo.getCuota()));
-            tableRow.addView(cuotaTextView);
-
-            // Crear un botón para realizar un pago
-            Button pagarButton = new Button(this);
-            pagarButton.setText(R.string.pagar);
-
-            // Deshabilitar el botón de pagar si el monto es 0
-            if (prestamo.getTotalCredit() == 0) {
-                pagarButton.setEnabled(false);
-                pagarButton.setBackgroundColor(Color.GRAY);
-            } else {
-                pagarButton.setEnabled(true);
-            }
+                // Crear TextViews para cada atributo del préstamo
+                TextView loanTypeTextView = new TextView(this);
+                loanTypeTextView.setText(prestamo.getLoantype());
+                tableRow.addView(loanTypeTextView);
+                loanTypeTextView.setGravity(Gravity.CENTER);
 
 
-            // Obtener la posición del TableRow
-            int position = rowCount;
-            rowCount++;
+                TextView totalCreditTextView = new TextView(this);
+                totalCreditTextView.setText(String.valueOf(prestamo.getTotalCredit()));
+                tableRow.addView(totalCreditTextView);
 
-            // Agregar una etiqueta al botón con la posición del TableRow
-            pagarButton.setTag(position);
+                TextView periodTextView = new TextView(this);
+                periodTextView.setText(String.format("%s años", String.valueOf(prestamo.getPeriod())));
+                tableRow.addView(periodTextView);
 
-            pagarButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int rowPosition = (int) v.getTag();
+                TextView percentageTextView = new TextView(this);
+                percentageTextView.setText(String.valueOf(prestamo.getPercentage()));
+                tableRow.addView(percentageTextView);
 
-                    // Acceder a la fila correspondiente en la lista de préstamos
-                    Loan prestamo = loansList.get(rowPosition);
+                TextView cuotaTextView = new TextView(this);
+                cuotaTextView.setText(String.valueOf(prestamo.getCuota()));
+                tableRow.addView(cuotaTextView);
 
-                    // Código para realizar un pago
+                // Crear un botón para realizar un pago
+                Button pagarButton = new Button(this);
+                pagarButton.setText(R.string.pagar);
 
-                    if(prestamo.getTotalCredit() > 0){
-                        prestamo.setTotalCredit(prestamo.getTotalCredit()-prestamo.getCuota());
-                    }else{
-                        showToast("No se pueden realizar más pagos a este préstamo.");
-                    }
-                    database().getLoanDAO().update(prestamo);
-                    totalCreditTextView.setText(String.valueOf(prestamo.getTotalCredit()));
-                    showToast("Se realizó el pago con éxito");
+                // Deshabilitar el botón de pagar si el monto es 0
+                if (prestamo.getTotalCredit() == 0) {
+                    pagarButton.setEnabled(false);
+                    pagarButton.setBackgroundColor(Color.GRAY);
+                } else {
+                    pagarButton.setEnabled(true);
                 }
-            });
-            tableRow.addView(pagarButton);
 
-            // Agregar la fila a la tabla
-            tableLayout.addView(tableRow);
+
+                // Obtener la posición del TableRow
+                int position = rowCount;
+                rowCount++;
+
+                // Agregar una etiqueta al botón con la posición del TableRow
+                pagarButton.setTag(position);
+
+                pagarButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int rowPosition = (int) v.getTag();
+
+                        // Acceder a la fila correspondiente en la lista de préstamos
+                        Loan prestamo = loansList.get(rowPosition);
+
+                        // Código para realizar un pago
+
+                        if (prestamo.getTotalCredit() > 0) {
+                            prestamo.setTotalCredit(prestamo.getTotalCredit() - prestamo.getCuota());
+                        } else {
+                            showToast("No se pueden realizar más pagos a este préstamo.");
+                        }
+                        database().getLoanDAO().update(prestamo);
+                        totalCreditTextView.setText(String.valueOf(prestamo.getTotalCredit()));
+                        showToast("Se realizó el pago con éxito");
+                    }
+                });
+                tableRow.addView(pagarButton);
+
+                // Agregar la fila a la tabla
+                tableLayout.addView(tableRow);
+            }
+        }else{
+
+            showToast("El usuario no tiene prestamos asignados");
+            changeView(CustomerPrincipalActivity.class);
+
         }
     }
 
